@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1024" height="1024" role="img" aria-label="NightNight icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8A2D7A"/>
+      <stop offset="1" stop-color="#E0589C"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M104 276Q150 332 196 276M276 276Q322 332 368 276" stroke="#FFE9F1" stroke-width="24"/>
+    <path d="M214 390Q236 408 258 390" stroke="#FFE9F1" stroke-width="20"/>
+    <path d="M356 112H408L356 172H408" stroke="#FFFFFF" stroke-width="18"/>
+    <path d="M420 62H452L420 102H452" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="12"/>
+  </g>
+</svg>

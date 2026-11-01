@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#A42D79">
+  <meta name="description" content="NightNight is a rootless jailbreak tweak that hibernates your iPhone before the battery dies, isolates its radios, and restores system state on wake.">
+  <meta property="og:title" content="NightNight — jailbreak hibernation tweak">
+  <meta property="og:description" content="Hibernate before the battery dies, isolate radios, silence notifications locally, and wake by pressing the volume up button 3 times.">
+  <meta property="og:image" content="https://burc334.github.io/NightNight/icon.png">
+  <meta property="og:type" content="website">
+  <title>NightNight — jailbreak hibernation tweak</title>
+  <link rel="icon" href="icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Rootless + RootHide</p>
+        <h1>NightNight</h1>
+        <p class="summary">Hibernate your iPhone before the battery dies. NightNight isolates its radios while asleep and restores the previous system state when you wake it.</p>
+        <div class="actions">
+          <a class="button" href="https://github.com/burc334/NightNight/releases/latest">Download release</a>
+          <a class="button secondary" href="https://github.com/burc334/NightNight">View source</a>
+        </div>
+        <div class="meta">
+          <span>Version 1.0.0</span>
+          <span><code>com.burc334.nightnight</code></span>
+          <span>MIT</span>
+        </div>
+      </div>
+      <img class="hero-icon" src="icon.png" width="112" height="112" alt="NightNight icon">
+    </header>
+
+    <section class="card">
+      <h2>Compatibility</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Build</th>
+            <th>Architecture</th>
+            <th>Compatibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>RootHide</td>
+            <td><code>iphoneos-arm64e</code></td>
+            <td>Tested on iOS 18.4.1 (Dopamine 3, RootHide)</td>
+          </tr>
+          <tr>
+            <td>Rootless</td>
+            <td><code>iphoneos-arm64</code></td>
+            <td>Expected to work on rootless jailbreaks</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">Tested on iOS 18.4.1. This is a jailbreak tweak, not an App Store app. The package declares no iOS version restriction.</p>
+    </section>
+
+    <section class="card">
+      <h2>What it does</h2>
+      <ul>
+        <li>Hibernates automatically at a configurable battery threshold, or on demand with <strong>Hibernate Now</strong>.</li>
+        <li>Enables Airplane Mode and explicitly turns off Wi-Fi and Bluetooth while hibernating. Calls and messages cannot arrive.</li>
+        <li>Silences notification banners, sounds, and vibration locally; notifications remain in Notification Center.</li>
+        <li>Blocks tap-to-wake, pencil-to-wake, and lift-to-wake.</li>
+        <li>Wakes when the volume up button is pressed 3 times.</li>
+        <li>Pauses media, enables Low Power Mode, locks the screen, and fades the backlight.</li>
+        <li>Restores Wi-Fi, Bluetooth, Airplane Mode, Low Power Mode, ringer volume, lock, and proximity state on wake.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Wake and charging</h2>
+      <ul>
+        <li>Pressing the volume up button 3 times always wakes the device.</li>
+        <li><strong>Wake When Charger Connects</strong> wakes on a new charger connection.</li>
+        <li>If the charger is already connected when hibernation starts, NightNight waits for the next unplug/reconnect. It does not wake immediately.</li>
+        <li>While charger wake is on, the Wake Threshold is disabled and its slider is ignored.</li>
+        <li><strong>Hibernate While Charging</strong> controls whether automatic hibernation may start while connected. Manual hibernation is always available.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Settings</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Setting</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Enable NightNight</td><td>On</td></tr>
+          <tr><td>Auto Hibernate</td><td>On</td></tr>
+          <tr><td>Sleep Threshold</td><td>5%</td></tr>
+          <tr><td>Wake Threshold</td><td>6%</td></tr>
+          <tr><td>Hibernate While Charging</td><td>Off</td></tr>
+          <tr><td>Wake When Charger Connects</td><td>Off</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Settings apply immediately. Respring is not needed after changing them.</p>
+    </section>
+
+    <section class="card">
+      <h2>Privacy and scope</h2>
+      <p>NightNight does not use analytics or contact remote services. Notification suppression is local to the device.</p>
+      <p>Radios, ringer volume, Low Power Mode, lock state, and proximity monitoring are restored on wake. Media that NightNight pauses is left paused.</p>
+    </section>
+
+    <section class="card">
+      <h2>Install</h2>
+      <ol>
+        <li>Download the matching deb from the latest <a href="https://github.com/burc334/NightNight/releases/latest">GitHub release</a>:
+          <ul>
+            <li>RootHide: <code>NightNight_1.0.0_roothide_iphoneos-arm64e.deb</code></li>
+            <li>Rootless: <code>NightNight_1.0.0_rootless_iphoneos-arm64.deb</code></li>
+          </ul>
+        </li>
+        <li>Install with Sileo, Zebra, or Filza.</li>
+        <li>Respring after installation so SpringBoard loads the tweak and preference bundle.</li>
+        <li>Open <strong>Settings → NightNight</strong> to configure thresholds.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Verification</h2>
+      <p>SHA-256 checksums are published in <code>SHA256SUMS.txt</code> with the GitHub release. Verify the deb before installing it.</p>
+    </section>
+
+    <section class="card">
+      <h2>Support</h2>
+      <p>Open an issue on <a href="https://github.com/burc334/NightNight/issues">GitHub</a>. Include your iOS version, jailbreak, device model, NightNight version, and the steps that led to the problem.</p>
+    </section>
+
+    <section class="card">
+      <h2>License</h2>
+      <p>MIT</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>NightNight · Rootless + RootHide</p>
+  </footer>
+</body>
+</html>

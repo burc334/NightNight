@@ -1,0 +1,2 @@
+4402af25a12ac1a33850eba85705a95548661599c12fb6a028acdc9408a4f572  NightNight_1.0.0_rootless_iphoneos-arm64.deb
+e677af0a2d794820f5e1cb3d634ec3b40c23ef91efda7d10e417d04e3c4e0945  NightNight_1.0.0_roothide_iphoneos-arm64e.deb

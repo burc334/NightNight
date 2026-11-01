@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>items</key>
+    <array>
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>label</key>
+            <string>NightNight</string>
+            <key>footerText</key>
+            <string>Settings apply immediately. Respring not needed.</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>label</key>
+            <string>Enable NightNight</string>
+            <key>key</key>
+            <string>Enabled</string>
+            <key>defaults</key>
+            <string>com.burc334.nightnight</string>
+            <key>default</key>
+            <true/>
+            <key>PostNotification</key>
+            <string>com.burc334.nightnight/preferencesChanged</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>label</key>
+            <string>Auto Hibernate</string>
+            <key>key</key>
+            <string>AutoHibernate</string>
+            <key>defaults</key>
+            <string>com.burc334.nightnight</string>
+            <key>default</key>
+            <true/>
+            <key>PostNotification</key>
+            <string>com.burc334.nightnight/preferencesChanged</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSButtonCell</string>
+            <key>label</key>
+            <string>Hibernate Now</string>
+            <key>action</key>
+            <string>hibernateNow:</string>
+        </dict>
+
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>label</key>
+            <string>Sleep Threshold</string>
+            <key>footerText</key>
+            <string>Used only when Auto Hibernate is on. &quot;Hibernate Now&quot; button above still works when Auto Hibernate is off and this slider is disabled.</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSliderCell</string>
+            <key>key</key>
+            <string>SleepLevel</string>
+            <key>defaults</key>
+            <string>com.burc334.nightnight</string>
+            <key>default</key>
+            <integer>5</integer>
+            <key>min</key>
+            <integer>1</integer>
+            <key>max</key>
+            <integer>99</integer>
+            <key>showValue</key>
+            <true/>
+            <key>isSegmented</key>
+            <true/>
+            <key>segmentCount</key>
+            <integer>98</integer>
+            <key>PostNotification</key>
+            <string>com.burc334.nightnight/preferencesChanged</string>
+        </dict>
+
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>label</key>
+            <string>Wake Threshold</string>
+            <key>footerText</key>
+            <string>Used only when Auto Hibernate is on and Wake When Charger Connects is off. Wake by pressing volume up button 3 times.</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSliderCell</string>
+            <key>key</key>
+            <string>WakeLevel</string>
+            <key>defaults</key>
+            <string>com.burc334.nightnight</string>
+            <key>default</key>
+            <integer>6</integer>
+            <key>min</key>
+            <integer>1</integer>
+            <key>max</key>
+            <integer>99</integer>
+            <key>showValue</key>
+            <true/>
+            <key>isSegmented</key>
+            <true/>
+            <key>segmentCount</key>
+            <integer>98</integer>
+            <key>PostNotification</key>
+            <string>com.burc334.nightnight/preferencesChanged</string>
+        </dict>
+
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>label</key>
+            <string>Charging</string>
+            <key>footerText</key>
+            <string>Wake When Charger Connects uses a new charger connection. If the charger is already connected when hibernation starts, NightNight waits for the next reconnect. The Wake Threshold is ignored while this is on.</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>label</key>
+            <string>Hibernate While Charging</string>
+            <key>key</key>
+            <string>AllowCharging</string>
+            <key>defaults</key>
+            <string>com.burc334.nightnight</string>
+            <key>default</key>
+            <false/>
+            <key>PostNotification</key>
+            <string>com.burc334.nightnight/preferencesChanged</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>label</key>
+            <string>Wake When Charger Connects</string>
+            <key>key</key>
+            <string>WakeOnCharger</string>
+            <key>defaults</key>
+            <string>com.burc334.nightnight</string>
+            <key>default</key>
+            <false/>
+            <key>PostNotification</key>
+            <string>com.burc334.nightnight/preferencesChanged</string>
+        </dict>
+
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>label</key>
+            <string>During Hibernation</string>
+            <key>footerText</key>
+            <string>Hibernation turns on Airplane Mode and turns off Wi-Fi and Bluetooth. Calls and messages cannot arrive while the device is hibernating. Wake by pressing volume up button 3 times. Notification banners, sounds, and vibration are silenced locally and notifications remain in Notification Center.</string>
+        </dict>
+
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>label</key>
+            <string>About</string>
+            <key>footerText</key>
+            <string>NightNight 1.0.0
+Developed by burc334</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSButtonCell</string>
+            <key>label</key>
+            <string>Reset to Defaults</string>
+            <key>action</key>
+            <string>resetDefaults:</string>
+        </dict>
+    </array>
+    <key>title</key>
+    <string>NightNight</string>
+</dict>
+</plist>

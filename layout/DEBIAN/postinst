@@ -1,0 +1,55 @@
+#!/bin/sh
+
+chmod 0755 /Library/MobileSubstrate/DynamicLibraries/NightNightRunner 2>/dev/null || true
+chmod 0755 /var/jb/Library/MobileSubstrate/DynamicLibraries/NightNightRunner 2>/dev/null || true
+chmod 0755 /Library/MobileSubstrate/DynamicLibraries/NightNightRunner.sh 2>/dev/null || true
+chmod 0755 /var/jb/Library/MobileSubstrate/DynamicLibraries/NightNightRunner.sh 2>/dev/null || true
+
+# Remove files left by earlier test builds.
+rm -f /Library/MobileSubstrate/DynamicLibraries/NightNightCallGuard.dylib 2>/dev/null || true
+rm -f /Library/MobileSubstrate/DynamicLibraries/NightNightCallGuard.plist 2>/dev/null || true
+rm -f /var/jb/Library/MobileSubstrate/DynamicLibraries/NightNightCallGuard.dylib 2>/dev/null || true
+rm -f /var/jb/Library/MobileSubstrate/DynamicLibraries/NightNightCallGuard.plist 2>/dev/null || true
+rm -rf /Library/ControlCenter/Bundles/NightNightCC.bundle 2>/dev/null || true
+rm -rf /var/jb/Library/ControlCenter/Bundles/NightNightCC.bundle 2>/dev/null || true
+rm -f /var/mobile/Library/Preferences/com.burc334.nightnight.callguard.log 2>/dev/null || true
+rm -f /var/mobile/Library/Preferences/com.burc334.nightnight.localSilenceActive 2>/dev/null || true
+rm -f /var/mobile/Library/Preferences/com.burc334.nightnight.events.log 2>/dev/null || true
+rm -f /var/mobile/Library/Preferences/com.burc334.nightnight.methods.log 2>/dev/null || true
+rm -f /var/mobile/Library/Preferences/com.burc334.nightnight.hooks.log 2>/dev/null || true
+rm -f /var/mobile/Library/Preferences/com.burc334.nightnight.runner.log 2>/dev/null || true
+rm -f /rootfs/var/mobile/Library/Preferences/com.burc334.nightnight.localSilenceActive 2>/dev/null || true
+
+JBROOT=""
+for candidate in /private/var/containers/Bundle/Application/.jbroot-*; do
+    if [ -d "$candidate" ]; then
+        JBROOT="$candidate"
+        break
+    fi
+done
+if [ -z "$JBROOT" ]; then
+    JBROOT="/var/jb"
+fi
+
+PLIST=""
+for candidate in \
+    /Library/LaunchDaemons/com.burc334.nightnight.sleepd.plist \
+    /var/jb/Library/LaunchDaemons/com.burc334.nightnight.sleepd.plist; do
+    if [ -f "$candidate" ]; then
+        PLIST="$candidate"
+        break
+    fi
+done
+
+if [ -n "$PLIST" ]; then
+    chown root:wheel "$PLIST" 2>/dev/null || true
+    chmod 0644 "$PLIST" 2>/dev/null || true
+    plutil -convert xml1 "$PLIST" >/dev/null 2>&1 || true
+    sed -i.bak "s|@JBROOT@|$JBROOT|g" "$PLIST" 2>/dev/null || true
+    rm -f "$PLIST.bak"
+    plutil -convert binary1 "$PLIST" >/dev/null 2>&1 || true
+    launchctl unload "$PLIST" 2>/dev/null || true
+    launchctl load "$PLIST" 2>/dev/null || true
+fi
+
+exit 0
