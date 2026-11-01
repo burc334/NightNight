@@ -148,9 +148,9 @@ No Control Center bundle, dSYM, diagnostic log, test deb, or personal path is in
 - [ ] Confirm that **Hibernate While Charging** remains in the release.
 - [x] Review this bundle and approve the final files.
 - [x] Obtain explicit publish approval.
-- [ ] Create the repository, commit with the noreply identity, enable Pages from `/docs`, and publish the release.
-- [ ] Re-download the release assets and verify SHA-256 values.
-- [ ] Verify the live HTML and depiction JSON return HTTP 200.
+- [x] Create the repository, commit with the noreply identity, enable Pages from `/docs`, and publish the release.
+- [x] Re-download the release assets and verify SHA-256 values.
+- [x] Verify the live HTML and depiction JSON return HTTP 200.
 
 ## Publishing checklist
 
@@ -161,14 +161,16 @@ No Control Center bundle, dSYM, diagnostic log, test deb, or personal path is in
 - [x] README first sentence correct.
 - [x] README final attribution line correct and unique.
 - [x] No personal data or local paths in source, docs, debs, or release assets.
-- [ ] GitHub About description set without the attribution line.
-- [ ] Pages source set to `main` branch, `/docs` folder.
-- [ ] `docs/.nojekyll` present.
-- [ ] Depiction HTML and JSON live.
-- [ ] Release assets uploaded.
-- [ ] `SHA256SUMS.txt` uploaded.
-- [ ] Release is latest, not draft, not prerelease.
-- [ ] Repository is public.
-- [ ] No APT repository created.
+- [x] GitHub About description set without the attribution line.
+- [x] Pages source set to `main` branch, `/docs` folder.
+- [x] `docs/.nojekyll` present.
+- [x] Depiction HTML and JSON live.
+- [x] Release assets uploaded.
+- [x] `SHA256SUMS.txt` uploaded.
+- [x] Release is latest, not draft, not prerelease.
+- [x] Repository is public.
+- [x] No APT repository created.
 
 **Approval:** User explicitly approved publication on 2026-11-01.
+
+**Published:** `v1.0.0` on 2026-11-01. GitHub Pages is live at `https://burc334.github.io/NightNight/`; both release assets were re-downloaded and their SHA-256 values match `SHA256SUMS.txt`.
