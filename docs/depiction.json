@@ -14,7 +14,7 @@
         },
         {
           "class": "DepictionMarkdownView",
-          "markdown": "NightNight hibernates your iPhone before the battery dies, isolates its radios while asleep, and restores the previous system state when you wake it."
+          "markdown": "Hibernate device before the battery dies to save jailbroken state."
         },
         {
           "class": "DepictionTableTextView",
@@ -28,13 +28,13 @@
         },
         {
           "class": "DepictionTableTextView",
-          "title": "RootHide",
-          "text": "iphoneos-arm64e \u00b7 tested on iOS 18.4.1 (Dopamine 3)"
+          "title": "roothide",
+          "text": "iphoneos-arm64e · tested on iOS 18.4.1 (Dopamine 3)"
         },
         {
           "class": "DepictionTableTextView",
-          "title": "Rootless",
-          "text": "iphoneos-arm64 \u00b7 expected on rootless jailbreaks"
+          "title": "rootless",
+          "text": "iphoneos-arm64 · expected on rootless jailbreaks"
         },
         {
           "class": "DepictionMarkdownView",
@@ -50,11 +50,7 @@
         },
         {
           "class": "DepictionMarkdownView",
-          "markdown": "### Settings\n\n- Enable NightNight \u2014 On\n- Auto Hibernate \u2014 On\n- Sleep Threshold \u2014 5%\n- Wake Threshold \u2014 6%\n- Hibernate While Charging \u2014 Off\n- Wake When Charger Connects \u2014 Off"
-        },
-        {
-          "class": "DepictionMarkdownView",
-          "markdown": "### Install\n\n1. Download the matching deb: RootHide (`iphoneos-arm64e`) or Rootless (`iphoneos-arm64`).\n2. Install with Sileo, Zebra, or Filza.\n3. Respring after installation.\n4. Open **Settings \u2192 NightNight** to configure thresholds."
+          "markdown": "### Settings\n\n- Enable NightNight — On\n- Auto Hibernate — On\n- Sleep Threshold — 5%\n- Wake Threshold — 6%\n- Hibernate While Charging — Off\n- Wake When Charger Connects — Off"
         },
         {
           "class": "DepictionMarkdownView",
@@ -62,12 +58,18 @@
         },
         {
           "class": "DepictionMarkdownView",
-          "markdown": "### Verification\n\nSHA-256 checksums are published in `SHA256SUMS.txt` with the GitHub release. Verify the deb before installing."
+          "markdown": "### Verification\n\nSHA-256 checksums are published in `SHA256SUMS.txt` with the GitHub release."
         },
         {
           "class": "DepictionTableTextView",
           "title": "License",
           "text": "MIT"
+        },
+        {
+          "class": "DepictionTableButtonView",
+          "title": "View source on GitHub",
+          "action": "https://github.com/burc334/NightNight",
+          "openExternal": true
         }
       ]
     },
@@ -77,7 +79,7 @@
       "views": [
         {
           "class": "DepictionMarkdownView",
-          "markdown": "### 1.0.0\n\n- Initial release.\n- Automatic and manual hibernation.\n- Radio isolation, local notification silence, and state restoration.\n- Wake by pressing the volume up button 3 times, tap/lift blocking, and charger-connect wake.\n- Rootless and RootHide packages."
+          "markdown": "### 1.0.0\n\n- Initial release.\n- Automatic and manual hibernation.\n- Radio isolation, local notification silence, and state restoration.\n- Wake by pressing the volume up button 3 times, tap/lift blocking, and charger-connect wake.\n- rootless and roothide packages."
         }
       ]
     }

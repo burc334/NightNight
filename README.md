@@ -2,24 +2,24 @@
   <img src="docs/icon.png" width="160" alt="NightNight icon">
 </p>
 
-<h1 align="center">NightNight</h1>
+# NightNight
 
-<p align="center"><strong>NightNight is a rootless iOS jailbreak tweak that hibernates your iPhone before the battery dies, isolates its radios while asleep, and restores the previous system state when you wake it.</strong></p>
+<p align="center"><strong>NightNight is a rootless iOS jailbreak tweak that hibernates the device before the battery dies to save jailbroken state.</strong></p>
 
 - Package: `com.burc334.nightnight`
 - Version: `1.0.0`
 - Tested: iOS 18.4.1
-- Builds: rootless (`iphoneos-arm64`) and RootHide (`iphoneos-arm64e`)
+- Builds: rootless (`iphoneos-arm64`) and roothide (`iphoneos-arm64e`)
 - License: MIT
 
 ## Compatibility
 
 | Build | Architecture | Compatibility |
 |---|---|---|
-| RootHide | `iphoneos-arm64e` | Tested on iOS 18.4.1 (Dopamine 3, RootHide) |
-| Rootless | `iphoneos-arm64` | Expected to work on rootless jailbreaks |
+| roothide | `iphoneos-arm64e` | Tested on iOS 18.4.1 (Dopamine 3, roothide) |
+| rootless | `iphoneos-arm64` | Expected to work on rootless jailbreaks |
 
-Tested on iOS 18.4.1 (Dopamine 3, RootHide). The package does not declare an iOS version restriction. It is built for jailbroken devices and is not an App Store app.
+Tested on iOS 18.4.1 (Dopamine 3, roothide). The package does not declare an iOS version restriction. It is built for jailbroken devices and is not an App Store app.
 
 ## Highlights
 
@@ -74,9 +74,15 @@ The Sleep Threshold is used when Auto Hibernate is on. The Wake Threshold is use
 
 ## Install
 
+### Sileo
+
+Add `https://burc334.github.io/apt/` in Sileo, then install NightNight.
+
+### Manual
+
 1. Download the deb matching your jailbreak from the latest GitHub release:
-   - RootHide: `NightNight_1.0.0_roothide_iphoneos-arm64e.deb`
-   - Rootless: `NightNight_1.0.0_rootless_iphoneos-arm64.deb`
+   - roothide: `com.burc334.nightnight_1.0.0_iphoneos-arm64e.deb`
+   - rootless: `com.burc334.nightnight_1.0.0_iphoneos-arm64.deb`
 2. Install it with Sileo, Zebra, or Filza.
 3. Respring after installation so SpringBoard loads the tweak and preference bundle.
 
@@ -92,7 +98,7 @@ make clean package FINALPACKAGE=1
 ./tools/make-roothide.sh
 ```
 
-The rootless deb is written to `packages/`. The RootHide script converts the latest rootless package to `iphoneos-arm64e`.
+The rootless deb is written to `packages/`. The roothide script converts the latest rootless package to `iphoneos-arm64e`.
 
 ## Verification
 
@@ -105,4 +111,5 @@ Open an issue on the GitHub repository. Include your iOS version, jailbreak, dev
 ## License
 
 MIT
+
 AI-assisted development with DeepSeek-V4.1-Flash-1017.
