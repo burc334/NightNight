@@ -1,8 +1,8 @@
-# NightNight — 1.0.1 release plan
+# NightNight — 1.0.0 release plan
 
 ## Goal
 
-Publish NightNight 1.0.1 as a packaging and launchd correctness update. Hibernation behavior, settings, and UI remain unchanged.
+Publish NightNight 1.0.0 with the final hibernation behavior and RootHide launchd packaging.
 
 ## Scope
 
@@ -51,8 +51,8 @@ Publish NightNight 1.0.1 as a packaging and launchd correctness update. Hibernat
 
 ## Packaging
 
-- Rootless: `NightNight_1.0.1_rootless_iphoneos-arm64.deb`
-- RootHide: `NightNight_1.0.1_roothide_iphoneos-arm64e.deb`
+- Rootless: `NightNight_1.0.0_rootless_iphoneos-arm64.deb`
+- RootHide: `NightNight_1.0.0_roothide_iphoneos-arm64e.deb`
 - Hashes: `SHA256SUMS.txt`
 - Depiction: `https://burc334.github.io/NightNight/`
 - Sileo depiction: `https://burc334.github.io/NightNight/depiction.json`

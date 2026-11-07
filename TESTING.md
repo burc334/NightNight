@@ -1,3 +1,19 @@
+## Build 1.0.0 — final rebuilt release
+
+**Built:** 2026-11-07
+**Install:** final package not installed yet; device verification pending.
+
+**Builds:**
+- `builds/com.burc334.nightnight_1.0.0_iphoneos-arm64.deb`
+  SHA-256: `72be1cc3ce0f461254f8d4e0c3852603568d85e13596af01353d23a438b2e5ed`
+- `builds/com.burc334.nightnight_1.0.0_iphoneos-arm64e.deb`
+  SHA-256: `d69b0b0fb005492362b4154292bdbddee498f534cf7209383280f5a98f4c5c2d`
+
+### Result
+
+Final 1.0.0 package built with the new icon, package identity, and
+documentation. Device install and visual verification remain pending.
+
 # NightNight test log
 
 ## Build 1.0.1 — RootHide launchd fix

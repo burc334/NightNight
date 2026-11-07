@@ -1,7 +1,7 @@
 {
   "class": "DepictionTabView",
   "minVersion": "0.1",
-  "tintColor": "#A42D79",
+  "tintColor": "#8A2D7A",
   "tabs": [
     {
       "class": "DepictionStackView",
@@ -10,7 +10,7 @@
         {
           "class": "DepictionHeaderView",
           "title": "NightNight",
-          "subtitle": "Version 1.0.1"
+          "subtitle": "Version 1.0.0"
         },
         {
           "class": "DepictionMarkdownView",
@@ -24,17 +24,17 @@
         {
           "class": "DepictionTableTextView",
           "title": "Version",
-          "text": "1.0.1"
+          "text": "1.0.0"
         },
         {
           "class": "DepictionTableTextView",
           "title": "RootHide",
-          "text": "iphoneos-arm64e · tested on iOS 18.4.1 (Dopamine 3)"
+          "text": "iphoneos-arm64e \u00b7 tested on iOS 18.4.1 (Dopamine 3)"
         },
         {
           "class": "DepictionTableTextView",
           "title": "Rootless",
-          "text": "iphoneos-arm64 · expected on rootless jailbreaks"
+          "text": "iphoneos-arm64 \u00b7 expected on rootless jailbreaks"
         },
         {
           "class": "DepictionMarkdownView",
@@ -50,11 +50,11 @@
         },
         {
           "class": "DepictionMarkdownView",
-          "markdown": "### Settings\n\n- Enable NightNight — On\n- Auto Hibernate — On\n- Sleep Threshold — 5%\n- Wake Threshold — 6%\n- Hibernate While Charging — Off\n- Wake When Charger Connects — Off"
+          "markdown": "### Settings\n\n- Enable NightNight \u2014 On\n- Auto Hibernate \u2014 On\n- Sleep Threshold \u2014 5%\n- Wake Threshold \u2014 6%\n- Hibernate While Charging \u2014 Off\n- Wake When Charger Connects \u2014 Off"
         },
         {
           "class": "DepictionMarkdownView",
-          "markdown": "### Install\n\n1. Download the matching deb: RootHide (`iphoneos-arm64e`) or Rootless (`iphoneos-arm64`).\n2. Install with Sileo, Zebra, or Filza.\n3. Respring after installation.\n4. Open **Settings → NightNight** to configure thresholds."
+          "markdown": "### Install\n\n1. Download the matching deb: RootHide (`iphoneos-arm64e`) or Rootless (`iphoneos-arm64`).\n2. Install with Sileo, Zebra, or Filza.\n3. Respring after installation.\n4. Open **Settings \u2192 NightNight** to configure thresholds."
         },
         {
           "class": "DepictionMarkdownView",
@@ -77,7 +77,7 @@
       "views": [
         {
           "class": "DepictionMarkdownView",
-          "markdown": "### 1.0.1\n\n- Fixed RootHide launchd registration so the sleep helper resolves the current jailbreak root at runtime.\n- Kept hibernation, settings, and UI behavior unchanged.\n\n### 1.0.0\n\n- Initial release.\n- Automatic and manual hibernation.\n- Radio isolation, local notification silence, and state restoration.\n- Wake by pressing the volume up button 3 times, tap/lift blocking, and charger-connect wake.\n- Rootless and RootHide packages."
+          "markdown": "### 1.0.0\n\n- Initial release.\n- Automatic and manual hibernation.\n- Radio isolation, local notification silence, and state restoration.\n- Wake by pressing the volume up button 3 times, tap/lift blocking, and charger-connect wake.\n- Rootless and RootHide packages."
         }
       ]
     }
