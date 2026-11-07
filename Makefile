@@ -43,8 +43,19 @@ NightNightRunner_LDFLAGS += -Wl,-segalign,4000
 
 include $(THEOS_MAKE_PATH)/tool.mk
 
+TOOL_NAME = NightNightLauncher
+NightNightLauncher_FILES = launcher/main.c
+NightNightLauncher_FRAMEWORKS = Foundation
+NightNightLauncher_INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries
+NightNightLauncher_CFLAGS = -Wall -Wextra
+NightNightLauncher_LDFLAGS += -Wl,-segalign,4000
+
+include $(THEOS_MAKE_PATH)/tool.mk
+
 before-package::
-	@if [ -f "$(THEOS_STAGING_DIR)/Library/MobileSubstrate/DynamicLibraries/NightNightRunner" ]; then \
-		ldid -S"$(THEOS_PROJECT_DIR)/tools/NightNightRunner.entitlements" \
-			"$(THEOS_STAGING_DIR)/Library/MobileSubstrate/DynamicLibraries/NightNightRunner"; \
-	fi
+	@for binary in NightNightRunner NightNightLauncher; do \
+		path="$(THEOS_STAGING_DIR)/Library/MobileSubstrate/DynamicLibraries/$$binary"; \
+		if [ -f "$$path" ]; then \
+			ldid -S"$(THEOS_PROJECT_DIR)/tools/NightNightRunner.entitlements" "$$path"; \
+		fi; \
+	done

@@ -1,6 +1,6 @@
 Package: com.burc334.nightnight
 Name: NightNight
-Version: 1.0.0
+Version: 1.0.1
 Architecture: iphoneos-arm64
 Description: Hibernate before the battery dies and restore radios and system state on wake.
 Depiction: https://burc334.github.io/NightNight/

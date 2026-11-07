@@ -1,0 +1,9 @@
+#!/bin/sh
+
+LABEL="com.burc334.nightnight.sleepd"
+
+launchctl remove "$LABEL" 2>/dev/null || true
+killall NightNightLauncher 2>/dev/null || true
+killall NightNightRunner 2>/dev/null || true
+
+exit 0

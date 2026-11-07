@@ -7,7 +7,7 @@
 <p align="center"><strong>NightNight is a rootless iOS jailbreak tweak that hibernates your iPhone before the battery dies, isolates its radios while asleep, and restores the previous system state when you wake it.</strong></p>
 
 - Package: `com.burc334.nightnight`
-- Version: `1.0.0`
+- Version: `1.0.1`
 - Tested: iOS 18.4.1
 - Builds: rootless (`iphoneos-arm64`) and RootHide (`iphoneos-arm64e`)
 - License: MIT
@@ -75,8 +75,8 @@ The Sleep Threshold is used when Auto Hibernate is on. The Wake Threshold is use
 ## Install
 
 1. Download the deb matching your jailbreak from the latest GitHub release:
-   - RootHide: `NightNight_1.0.0_roothide_iphoneos-arm64e.deb`
-   - Rootless: `NightNight_1.0.0_rootless_iphoneos-arm64.deb`
+   - RootHide: `NightNight_1.0.1_roothide_iphoneos-arm64e.deb`
+   - Rootless: `NightNight_1.0.1_rootless_iphoneos-arm64.deb`
 2. Install it with Sileo, Zebra, or Filza.
 3. Respring after installation so SpringBoard loads the tweak and preference bundle.
 

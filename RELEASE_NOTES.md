@@ -1,19 +1,16 @@
-# NightNight 1.0.0
+# NightNight 1.0.1
 
-NightNight 1.0.0 is the first public release of the iOS hibernation tweak. It hibernates an iPhone before the battery dies, isolates its radios while asleep, and restores the previous system state on wake.
+NightNight 1.0.1 is a packaging and launchd correctness update for RootHide. Hibernation, settings, and UI behavior are unchanged.
 
-## Highlights
+## RootHide launchd fix
 
-- Automatic hibernation at a configurable battery threshold.
-- Manual **Hibernate Now** from Settings.
-- Airplane Mode on and Wi-Fi/Bluetooth off while hibernating. Calls and messages cannot arrive.
-- Local notification silence while notifications remain in Notification Center.
-- Tap, pencil, and lift wake blocked during hibernation.
-- Wake by pressing the volume up button 3 times.
-- Optional **Wake When Charger Connects**, including waiting for the next reconnect when already charging.
-- Low Power Mode, media pause, screen lock, and backlight handling.
-- Restores radios, ringer, Low Power Mode, lock, and proximity state after wake.
-- Settings apply immediately; no respring is needed after changing them.
+- Removed install-time `@JBROOT@` substitution from the LaunchDaemon plist.
+- The plist now uses a stable logical launcher path and never stores a randomized jbroot path in the source configuration.
+- Added a small compiled launcher that resolves the current `.jbroot-*` at runtime.
+- The launcher requires exactly one valid runner/dylib pair, with a rootless fallback.
+- Missing-runner retries are spaced at 60 seconds; the launchd throttle is 60 seconds. The previous 1-second respawn loop cannot recur.
+- The launcher supervises the runner and preserves the existing ready-marker behavior.
+- `prerm` and `postrm` stop the job and remove the launcher, plist, and ready marker.
 
 ## Compatibility
 
@@ -26,8 +23,8 @@ Tested on iOS 18.4.1 (Dopamine 3, RootHide). The package does not declare an iOS
 
 ## Assets
 
-- `NightNight_1.0.0_roothide_iphoneos-arm64e.deb`
-- `NightNight_1.0.0_rootless_iphoneos-arm64.deb`
+- `NightNight_1.0.1_roothide_iphoneos-arm64e.deb`
+- `NightNight_1.0.1_rootless_iphoneos-arm64.deb`
 - `SHA256SUMS.txt`
 
 ## Install

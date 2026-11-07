@@ -6,9 +6,7 @@
     <string>com.burc334.nightnight.sleepd</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/bin/sh</string>
-        <string>@JBROOT@/Library/MobileSubstrate/DynamicLibraries/NightNightRunner.sh</string>
-        <string>@JBROOT@/Library/MobileSubstrate/DynamicLibraries/NightNightRunner</string>
+        <string>/var/root/Library/NightNight/launcher</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
@@ -17,7 +15,7 @@
     <key>ProcessType</key>
     <string>Interactive</string>
     <key>ThrottleInterval</key>
-    <integer>1</integer>
+    <integer>60</integer>
     <key>UserName</key>
     <string>root</string>
 </dict>

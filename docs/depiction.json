@@ -10,7 +10,7 @@
         {
           "class": "DepictionHeaderView",
           "title": "NightNight",
-          "subtitle": "Version 1.0.0"
+          "subtitle": "Version 1.0.1"
         },
         {
           "class": "DepictionMarkdownView",
@@ -24,7 +24,7 @@
         {
           "class": "DepictionTableTextView",
           "title": "Version",
-          "text": "1.0.0"
+          "text": "1.0.1"
         },
         {
           "class": "DepictionTableTextView",
@@ -77,7 +77,7 @@
       "views": [
         {
           "class": "DepictionMarkdownView",
-          "markdown": "### 1.0.0\n\n- Initial release.\n- Automatic and manual hibernation.\n- Radio isolation, local notification silence, and state restoration.\n- Wake by pressing the volume up button 3 times, tap/lift blocking, and charger-connect wake.\n- Rootless and RootHide packages."
+          "markdown": "### 1.0.1\n\n- Fixed RootHide launchd registration so the sleep helper resolves the current jailbreak root at runtime.\n- Kept hibernation, settings, and UI behavior unchanged.\n\n### 1.0.0\n\n- Initial release.\n- Automatic and manual hibernation.\n- Radio isolation, local notification silence, and state restoration.\n- Wake by pressing the volume up button 3 times, tap/lift blocking, and charger-connect wake.\n- Rootless and RootHide packages."
         }
       ]
     }

@@ -1,11 +1,11 @@
-# NightNight 1.0.0 release review
+# NightNight 1.0.1 release review
 
-This is the review bundle for **NightNight 1.0.0**. It records the files proposed for publication, the release metadata, verified checksums, and the remaining approval gates.
+This is the review bundle for **NightNight 1.0.1**. It records the files prepared for publication, the release metadata, and the verification status.
 
 ## Release summary
 
 - Name: NightNight
-- Version: 1.0.0
+- Version: 1.0.1
 - Package: `com.burc334.nightnight`
 - Tested on iOS 18.4.1; no package-level iOS version restriction
 - Architectures: `iphoneos-arm64` (rootless) and `iphoneos-arm64e` (RootHide)
@@ -13,8 +13,8 @@ This is the review bundle for **NightNight 1.0.0**. It records the files propose
 - Repository: `https://github.com/burc334/NightNight`
 - Pages depiction: `https://burc334.github.io/NightNight/`
 - Sileo depiction: `https://burc334.github.io/NightNight/depiction.json`
-- Release tag: `v1.0.0`
-- Release assets: `builds/NightNight_1.0.0_rootless_iphoneos-arm64.deb`, `builds/NightNight_1.0.0_roothide_iphoneos-arm64e.deb`, and `SHA256SUMS.txt`
+- Release tag: `v1.0.1`
+- Release assets: `builds/NightNight_1.0.1_rootless_iphoneos-arm64.deb`, `builds/NightNight_1.0.1_roothide_iphoneos-arm64e.deb`, and `SHA256SUMS.txt`
 
 ## Publishable file inventory
 
@@ -54,6 +54,7 @@ This is the review bundle for **NightNight 1.0.0**. It records the files propose
 - `NNWakeGuard.h`
 - `NNWakeGuard.m`
 - `runner/main.m`
+- `launcher/main.c`
 
 ### Preferences and packaging
 
@@ -65,9 +66,10 @@ This is the review bundle for **NightNight 1.0.0**. It records the files propose
 - `prefs/Resources/icon@3x.png`
 - `prefs/Resources/PackageIcon.png`
 - `layout/DEBIAN/postinst`
+- `layout/DEBIAN/prerm`
 - `layout/DEBIAN/postrm`
-- `layout/Library/LaunchDaemons/com.burc334.nightnight.sleepd.plist`
-- `layout/Library/MobileSubstrate/DynamicLibraries/NightNightRunner.sh`
+- `layout/Library/MobileSubstrate/DynamicLibraries/NightNightSleepd-RootHide.plist`
+- `layout/Library/MobileSubstrate/DynamicLibraries/NightNightSleepd-Rootless.plist`
 - `layout/Library/PreferenceLoader/Preferences/NightNight.plist`
 - `tools/NightNightRunner.entitlements`
 - `tools/make-roothide.sh`
@@ -87,38 +89,36 @@ This is the review bundle for **NightNight 1.0.0**. It records the files propose
 - Website: `https://burc334.github.io/NightNight/`
 - Topics: `jailbreak`, `ios`, `tweak`, `theos`, `roothide`, `rootless`, `hibernation`, `battery`
 - Pages source: `main` branch, `/docs` folder
-- Release title: `NightNight 1.0.0`
-- Release tag: `v1.0.0`
+- Release title: `NightNight 1.0.1`
+- Release tag: `v1.0.1`
 - Release assets: both debs and `SHA256SUMS.txt`
 - Release state: latest, not draft, not prerelease
 
 ## Package checksums
 
-These are the checksums for the release assets. Verify them again after downloading the published assets.
-
 | Asset | SHA-256 |
 |---|---|
-| `NightNight_1.0.0_rootless_iphoneos-arm64.deb` | `4402af25a12ac1a33850eba85705a95548661599c12fb6a028acdc9408a4f572` |
-| `NightNight_1.0.0_roothide_iphoneos-arm64e.deb` | `e677af0a2d794820f5e1cb3d634ec3b40c23ef91efda7d10e417d04e3c4e0945` |
+| `NightNight_1.0.1_rootless_iphoneos-arm64.deb` | `7f7d870570d5acfd671f4d68e27552f7c8e52ef8a1fa816942d49ef934b6d9ee` |
+| `NightNight_1.0.1_roothide_iphoneos-arm64e.deb` | `d0e1324c44c881f377c29f679f001fcd27652306ad4a1670bcef72c3de76fd70` |
 
 The package payload contains:
 
 - `NightNight.dylib`
 - `NightNight.plist`
 - `NightNightRunner`
-- `NightNightRunner.sh`
+- `NightNightLauncher`
 - `NightNightPrefs.bundle`
 - `NightNightPrefs` resources and icons
-- LaunchDaemon plist
+- Launcher templates for RootHide and rootless
 - PreferenceLoader entry
-- `postinst` and `postrm`
+- `postinst`, `prerm`, and `postrm`
 
 No Control Center bundle, dSYM, diagnostic log, test deb, or personal path is included.
 
 ## Verified
 
 - [x] Rootless and RootHide packages build.
-- [x] Version is `1.0.0` in `control`, the preference bundle, and the About footer.
+- [x] Version is `1.0.1` in `control`, the preference bundle, and the About footer.
 - [x] Control has no iOS version restriction.
 - [x] RootHide `Icon:` path is rewritten to `file:///Library/...`.
 - [x] RootHide package architecture is `iphoneos-arm64e`.
@@ -126,36 +126,29 @@ No Control Center bundle, dSYM, diagnostic log, test deb, or personal path is in
 - [x] Depiction and Sileo depiction fields point to the planned Pages URLs.
 - [x] Settings icons are 29, 58, and 87 pixels.
 - [x] Package icon is 1024 pixels.
-- [x] Sleep helper starts, registers, and creates a visible ready marker.
-- [x] Uninstall removes the daemon and ready marker.
-- [x] Reinstall restores the daemon and ready marker.
-- [x] README first sentence identifies the tweak as a rootless iOS jailbreak tweak.
-- [x] README final line matches the required attribution string exactly once.
-- [x] README has no unsupported version claims and no pending/unknown section.
+- [x] Installed source plist uses the logical launcher path and contains no `.jbroot-` path.
+- [x] Launchd job starts with `runs = 1`.
+- [x] Sleep helper ready marker is present.
+- [x] User confirmed the tweak works.
+- [x] Automatic threshold hibernation and wake confirmed at 94% on the diagnostic build.
+- [x] Final clean artifact installs; no debug instrumentation or debug log remains.
+- [x] RootHide TweakInject copy is synchronized by `postinst`.
+- [x] No Control Center bundle is present in the package.
+- [x] Source and package strings contain no personal paths, credentials, or diagnostic dumps.
 - [x] Depiction JSON validates.
 - [x] HTML parses and the CSS is self-contained.
-- [x] Source and package strings contain no personal paths, credentials, or diagnostic dumps.
-- [x] No internal development guide is present in the project.
 
 ## Remaining before release approval
 
-- [ ] Complete a final manual hibernation and wake cycle on the 1.0.0 release artifact.
-- [ ] Complete the charger tests: connected after hibernation, already charging at start, and reconnect after unplugging.
-- [ ] Confirm calls are blocked, the macOS status remains unchanged, notifications remain in Notification Center, and media stays paused.
-- [ ] Recheck automatic sleep and wake thresholds on 1.0.0.
-- [ ] Reboot/recovery check.
+- [ ] Full reboot/re-jailbreak and RootHide re-randomization check on the final artifact; not performed per user instruction.
+- [ ] Missing-runner retry check on the final artifact.
 - [ ] Install the rootless build on a rootless device.
-- [ ] Confirm that **Hibernate While Charging** remains in the release.
 - [x] Review this bundle and approve the final files.
-- [x] Obtain explicit publish approval.
-- [x] Create the repository, commit with the noreply identity, enable Pages from `/docs`, and publish the release.
-- [x] Re-download the release assets and verify SHA-256 values.
-- [x] Verify the live HTML and depiction JSON return HTTP 200.
+- [x] Commit the update locally.
+- [ ] Obtain explicit publish approval before any push, tag, Pages update, or GitHub release.
 
 ## Publishing checklist
 
-- [x] Final device tests passed on the claimed environment.
-- [x] Review bundle approved.
 - [x] Version, architecture, and package metadata correct.
 - [x] License present.
 - [x] README first sentence correct.
@@ -164,13 +157,9 @@ No Control Center bundle, dSYM, diagnostic log, test deb, or personal path is in
 - [x] GitHub About description set without the attribution line.
 - [x] Pages source set to `main` branch, `/docs` folder.
 - [x] `docs/.nojekyll` present.
-- [x] Depiction HTML and JSON live.
-- [x] Release assets uploaded.
-- [x] `SHA256SUMS.txt` uploaded.
-- [x] Release is latest, not draft, not prerelease.
-- [x] Repository is public.
-- [x] No APT repository created.
-
-**Approval:** User explicitly approved publication on 2026-11-01.
-
-**Published:** `v1.0.0` on 2026-11-01. GitHub Pages is live at `https://burc334.github.io/NightNight/`; both release assets were re-downloaded and their SHA-256 values match `SHA256SUMS.txt`.
+- [ ] Final full reboot/re-jailbreak verification.
+- [ ] Final review approval.
+- [ ] Push and publish.
+- [ ] Re-download release assets and verify SHA-256 values.
+- [ ] Verify live HTML and depiction JSON.
+- [ ] No APT repository created.

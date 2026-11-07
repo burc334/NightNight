@@ -1,9 +1,12 @@
 #!/bin/sh
 
-chmod 0755 /Library/MobileSubstrate/DynamicLibraries/NightNightRunner 2>/dev/null || true
-chmod 0755 /var/jb/Library/MobileSubstrate/DynamicLibraries/NightNightRunner 2>/dev/null || true
-chmod 0755 /Library/MobileSubstrate/DynamicLibraries/NightNightRunner.sh 2>/dev/null || true
-chmod 0755 /var/jb/Library/MobileSubstrate/DynamicLibraries/NightNightRunner.sh 2>/dev/null || true
+LABEL="com.burc334.nightnight.sleepd"
+READY="/var/mobile/Library/Preferences/com.burc334.nightnight.sleepd.ready"
+
+launchctl remove "$LABEL" 2>/dev/null || true
+killall NightNightLauncher 2>/dev/null || true
+killall NightNightRunner 2>/dev/null || true
+rm -f "$READY" 2>/dev/null || true
 
 # Remove files left by earlier test builds.
 rm -f /Library/MobileSubstrate/DynamicLibraries/NightNightCallGuard.dylib 2>/dev/null || true
@@ -18,38 +21,60 @@ rm -f /var/mobile/Library/Preferences/com.burc334.nightnight.events.log 2>/dev/n
 rm -f /var/mobile/Library/Preferences/com.burc334.nightnight.methods.log 2>/dev/null || true
 rm -f /var/mobile/Library/Preferences/com.burc334.nightnight.hooks.log 2>/dev/null || true
 rm -f /var/mobile/Library/Preferences/com.burc334.nightnight.runner.log 2>/dev/null || true
-rm -f /rootfs/var/mobile/Library/Preferences/com.burc334.nightnight.localSilenceActive 2>/dev/null || true
 
-JBROOT=""
-for candidate in /private/var/containers/Bundle/Application/.jbroot-*; do
-    if [ -d "$candidate" ]; then
-        JBROOT="$candidate"
-        break
-    fi
-done
-if [ -z "$JBROOT" ]; then
-    JBROOT="/var/jb"
+if [ -d /rootfs ]; then
+    SOURCE_DIR="/Library/MobileSubstrate/DynamicLibraries"
+    TEMPLATE_NAME="NightNightSleepd-RootHide.plist"
+    PLIST="/Library/LaunchDaemons/com.burc334.nightnight.sleepd.plist"
+else
+    SOURCE_DIR="/var/jb/Library/MobileSubstrate/DynamicLibraries"
+    TEMPLATE_NAME="NightNightSleepd-Rootless.plist"
+    PLIST="/var/jb/Library/LaunchDaemons/com.burc334.nightnight.sleepd.plist"
 fi
 
-PLIST=""
-for candidate in \
-    /Library/LaunchDaemons/com.burc334.nightnight.sleepd.plist \
-    /var/jb/Library/LaunchDaemons/com.burc334.nightnight.sleepd.plist; do
-    if [ -f "$candidate" ]; then
-        PLIST="$candidate"
-        break
-    fi
-done
+LAUNCHER_SRC="$SOURCE_DIR/NightNightLauncher"
+TEMPLATE_SRC="$SOURCE_DIR/$TEMPLATE_NAME"
+TWEAK_SRC="$SOURCE_DIR/NightNight.dylib"
+TWEAK_FILTER_SRC="$SOURCE_DIR/NightNight.plist"
 
-if [ -n "$PLIST" ]; then
-    chown root:wheel "$PLIST" 2>/dev/null || true
-    chmod 0644 "$PLIST" 2>/dev/null || true
-    plutil -convert xml1 "$PLIST" >/dev/null 2>&1 || true
-    sed -i.bak "s|@JBROOT@|$JBROOT|g" "$PLIST" 2>/dev/null || true
-    rm -f "$PLIST.bak"
-    plutil -convert binary1 "$PLIST" >/dev/null 2>&1 || true
-    launchctl unload "$PLIST" 2>/dev/null || true
-    launchctl load "$PLIST" 2>/dev/null || true
+if [ ! -f "$LAUNCHER_SRC" ] || [ ! -f "$TEMPLATE_SRC" ] || [ ! -f "$TWEAK_SRC" ] || [ ! -f "$TWEAK_FILTER_SRC" ]; then
+    echo "NightNight: launcher payload is unavailable" >&2
+    exit 1
 fi
+
+# RootHide keeps injection copies in /usr/lib/TweakInject. An upgrade can
+# replace the source file while leaving the old hardlink/copy active.
+if [ -d /usr/lib/TweakInject ]; then
+    cp -f "$TWEAK_SRC" /usr/lib/TweakInject/NightNight.dylib 2>/dev/null || true
+    cp -f "$TWEAK_FILTER_SRC" /usr/lib/TweakInject/NightNight.plist 2>/dev/null || true
+    chown root:wheel /usr/lib/TweakInject/NightNight.dylib /usr/lib/TweakInject/NightNight.plist 2>/dev/null || true
+    chmod 0755 /usr/lib/TweakInject/NightNight.dylib 2>/dev/null || true
+    chmod 0644 /usr/lib/TweakInject/NightNight.plist 2>/dev/null || true
+fi
+
+if [ -z "$PLIST" ]; then
+    echo "NightNight: LaunchDaemon path is unavailable" >&2
+    exit 1
+fi
+
+if [ ! -d /rootfs ]; then
+    mkdir -p /var/root/Library/NightNight 2>/dev/null || true
+    cp "$LAUNCHER_SRC" /var/root/Library/NightNight/launcher 2>/dev/null || exit 1
+    chown root:wheel /var/root/Library/NightNight/launcher 2>/dev/null || true
+    chmod 0755 /var/root/Library/NightNight/launcher 2>/dev/null || true
+fi
+
+cp "$TEMPLATE_SRC" "$PLIST" 2>/dev/null || exit 1
+chown root:wheel "$PLIST" 2>/dev/null || true
+chmod 0644 "$PLIST" 2>/dev/null || true
+
+launchctl unload "$PLIST" 2>/dev/null || true
+launchctl load "$PLIST" 2>/dev/null || true
+
+# Keep the on-disk source plist free of a baked jbroot path. The running job
+# keeps its resolved launchd path; the source is restored for the next boot.
+cp "$TEMPLATE_SRC" "$PLIST" 2>/dev/null || true
+chown root:wheel "$PLIST" 2>/dev/null || true
+chmod 0644 "$PLIST" 2>/dev/null || true
 
 exit 0

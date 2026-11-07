@@ -1,14 +1,16 @@
 #!/bin/sh
 
-# The package manager removes the files before this script runs. Stop the
-# daemon by label and remove any remaining ready marker.
-launchctl remove com.burc334.nightnight.sleepd 2>/dev/null || true
-launchctl bootout system/com.burc334.nightnight.sleepd 2>/dev/null || true
-launchctl bootout user/501/com.burc334.nightnight.sleepd 2>/dev/null || true
-launchctl bootout user/foreground/com.burc334.nightnight.sleepd 2>/dev/null || true
+LABEL="com.burc334.nightnight.sleepd"
+
+launchctl remove "$LABEL" 2>/dev/null || true
+killall NightNightLauncher 2>/dev/null || true
 killall NightNightRunner 2>/dev/null || true
 
+rm -rf /var/root/Library/NightNight 2>/dev/null || true
 rm -f /var/mobile/Library/Preferences/com.burc334.nightnight.sleepd.ready 2>/dev/null || true
+rm -f /Library/LaunchDaemons/com.burc334.nightnight.sleepd.plist 2>/dev/null || true
+rm -f /var/jb/Library/LaunchDaemons/com.burc334.nightnight.sleepd.plist 2>/dev/null || true
+rm -f /usr/lib/TweakInject/NightNight.dylib /usr/lib/TweakInject/NightNight.plist 2>/dev/null || true
 rm -rf /Library/ControlCenter/Bundles/NightNightCC.bundle 2>/dev/null || true
 rm -rf /var/jb/Library/ControlCenter/Bundles/NightNightCC.bundle 2>/dev/null || true
 

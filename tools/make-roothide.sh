@@ -38,7 +38,7 @@ fix_macho() {
         install_name_tool -delete_rpath "$rpath" "$file" 2>/dev/null || true
     done
 
-    if [ "$(basename "$file")" = "NightNightRunner" ] && [ -f "$ENTITLEMENTS" ]; then
+    if { [ "$(basename "$file")" = "NightNightRunner" ] || [ "$(basename "$file")" = "NightNightLauncher" ]; } && [ -f "$ENTITLEMENTS" ]; then
         ldid -S"$ENTITLEMENTS" "$file"
     else
         ldid -S "$file"
